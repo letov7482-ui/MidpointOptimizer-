@@ -5,11 +5,4 @@ pluginManagement {
     }
 }
 
-plugins {
-    id "com.gradle.develocity" version "3.17.5"
-}
-
 rootProject.name = 'midpoint'
-
-// Говорим сборщику искать исходники прямо в корне, а не в глубоких папках!
-// Это избавит нас от необходимости перемещать Java-файлы
