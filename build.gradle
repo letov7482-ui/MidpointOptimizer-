@@ -7,7 +7,6 @@ group = 'net.midpoint'
 
 repositories {
     maven { url = "https://maven.fabricmc.net/" }
-    maven { url = "https://terraformersmc.com" } // Запасной сервер для модов
     mavenCentral()
 }
 
@@ -17,8 +16,8 @@ dependencies {
     
     modImplementation "net.fabricmc:fabric-loader:0.16.10"
     
-    // Используем динамическое подключение Fabric API, чтобы Gradle сам выбрал точную версию для 1.21.11
-    modImplementation "net.fabricmc.fabric-api:fabric-api:0.102.0+1.21.1-SNAPSHOT"
+    // Точная рабочая версия Fabric API под 1.21.x
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.116.1+1.21.1"
 }
 
 sourceSets {
@@ -44,3 +43,4 @@ processResources {
 tasks.withType(JavaCompile).configureEach {
     it.options.release = 21
 }
+
