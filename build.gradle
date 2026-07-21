@@ -1,84 +1,44 @@
-rplugins {
-	id 'fabric-loom' version '1.9-SNAPSHOT'
-	id 'maven-publish'
+plugins {
+    id 'fabric-loom' version '1.7-SNAPSHOT'
 }
 
-version = project.mod_version
-group = project.maven_group
-
-base {
-	archivesName = project.archives_base_name
-}
+version = '1.0.0'
+group = 'net.midpoint'
 
 repositories {
-	// Добавьте сюда дополнительные репозитории, если используете сторонние библиотеки
-	mavenCentral()
-}
-
-loom {
-	splitEnvironmentSourceSets()
-
-	mods {
-		"midpoint" {
-			sourceSet sourceSets.main
-		}
-	}
+    mavenCentral()
+    maven { url = "https://fabricmc.net" }
 }
 
 dependencies {
-	// Ядро Minecraft + маппинги + загрузчик Fabric
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-	// Fabric API
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    minecraft "com.mojang:minecraft:1.21.11"
+    mappings "net.fabricmc:yarn:1.21.11+build.1:v2"
+    loader "net.fabricmc:fabric-loader:0.16.10"
+    
+    // Подключаем Fabric API, чтобы работал HUD
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.102.0+1.21.11"
 }
 
-processResources {
-	inputs.property "version", project.version
-
-	filesMatching("fabric.mod.json") {
-		expand "version": project.version
-	}
-}
-
-tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
-}
-
-java {
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
-
-	withSourcesJar()
-}
-
-jar {
-	from("LICENSE") {
-		rename { "${it}_${project.base.archivesName.get()}" }
-	}
-}
-
-publishing {
-	publications {
-		create("mavenJava", MavenPublication) {
-			artifactId project.archives_base_name
-			from components.java
-		}
-	}
-
-	repositories {
-		// Настройте публикацию в свой Maven-репозиторий при необходимости
-	}
-}
 sourceSets {
     main {
         java {
-            srcDirs = ['.'] // Искать Java файлы прямо в корне!
+            srcDirs = ['.'] // Ищем Java файлы прямо в корне репозитория
         }
         resources {
-            srcDirs = ['.'] // Искать JSON файлы прямо в корне!
+            srcDirs = ['.'] // Ищем JSON файлы прямо в корне репозитория
         }
     }
+}
+
+processResources {
+    inputs.property "version", project.version
+    filteringCharset "UTF-8"
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 21
 }
