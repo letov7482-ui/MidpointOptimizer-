@@ -5,27 +5,22 @@ plugins {
 version = '1.0.0'
 group = 'net.midpoint'
 
-repositories {
-    mavenCentral()
-    maven { url = "https://fabricmc.net" }
-}
-
 dependencies {
     minecraft "com.mojang:minecraft:1.21.11"
     mappings "net.fabricmc:yarn:1.21.11+build.1:v2"
     loader "net.fabricmc:fabric-loader:0.16.10"
     
-    // Подключаем Fabric API, чтобы работал HUD
+    // Подключаем Fabric API для HUD
     modImplementation "net.fabricmc.fabric-api:fabric-api:0.102.0+1.21.11"
 }
 
 sourceSets {
     main {
         java {
-            srcDirs = ['.'] // Ищем Java файлы прямо в корне репозитория
+            srcDirs = ['.'] // Ищем Java файлы в корне
         }
         resources {
-            srcDirs = ['.'] // Ищем JSON файлы прямо в корне репозитория
+            srcDirs = ['.'] // Ищем JSON файлы в корне
         }
     }
 }
