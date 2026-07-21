@@ -1,6 +1,14 @@
-plugins {
-    id 'fabric-loom' version '1.7-SNAPSHOT'
+buildscript {
+    repositories {
+        maven { url = "https://fabricmc.net" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "net.fabricmc:fabric-loom:1.7.4"
+    }
 }
+
+apply plugin: "fabric-loom"
 
 version = '1.0.0'
 group = 'net.midpoint'
@@ -10,17 +18,16 @@ dependencies {
     mappings "net.fabricmc:yarn:1.21.11+build.1:v2"
     loader "net.fabricmc:fabric-loader:0.16.10"
     
-    // Подключаем Fabric API для HUD
     modImplementation "net.fabricmc.fabric-api:fabric-api:0.102.0+1.21.11"
 }
 
 sourceSets {
     main {
         java {
-            srcDirs = ['.'] // Ищем Java файлы в корне
+            srcDirs = ['.']
         }
         resources {
-            srcDirs = ['.'] // Ищем JSON файлы в корне
+            srcDirs = ['.']
         }
     }
 }
