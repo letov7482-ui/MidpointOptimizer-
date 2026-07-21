@@ -10,10 +10,15 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-      - name: Build with Gradle
-        run: chmod +x gradlew && ./gradlew build || (wget https://gradle.org && unzip gradle-8.10-bin.zip && ./gradle-8.10/bin/gradle build)
+      - name: Setup Gradle and Build
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 8.10 # GitHub сам установит стабильный Gradle 8.10
+      - name: Compile Jar
+        run: gradle build --no-daemon # Собираем напрямую через установленный Gradle
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: MidpointOptimizer-JAR
           path: build/libs/*.jar
+          
