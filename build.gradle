@@ -1,4 +1,4 @@
-plugins {
+rplugins {
 	id 'fabric-loom' version '1.9-SNAPSHOT'
 	id 'maven-publish'
 }
@@ -71,4 +71,14 @@ publishing {
 	repositories {
 		// Настройте публикацию в свой Maven-репозиторий при необходимости
 	}
+}
+sourceSets {
+    main {
+        java {
+            srcDirs = ['.'] // Искать Java файлы прямо в корне!
+        }
+        resources {
+            srcDirs = ['.'] // Искать JSON файлы прямо в корне!
+        }
+    }
 }
