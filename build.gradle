@@ -7,7 +7,10 @@ group = 'net.midpoint'
 
 dependencies {
     minecraft "com.mojang:minecraft:1.21.11"
-    mappings "net.fabricmc:yarn:1.21.11+build.1:v2"
+    
+    // Используем официальные маппинги Mojang, они на 100% исправляют ошибку Unpick
+    mappings loom.officialMojangMappings()
+    
     modImplementation "net.fabricmc:fabric-loader:0.16.10"
     
     // Подключаем Fabric API для HUD
@@ -37,3 +40,4 @@ processResources {
 tasks.withType(JavaCompile).configureEach {
     it.options.release = 21
 }
+
