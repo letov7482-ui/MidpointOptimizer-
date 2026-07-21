@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.midpoint.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "MidpointOptimizerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

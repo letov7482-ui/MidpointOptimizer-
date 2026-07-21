@@ -1,38 +1,49 @@
-# 🚀 MidpointOptimizer (Minecraft 1.21.x)
+# Midpoint
 
-[![Build Mod](https://github.com)](https://github.com)
-![Minecraft Version](https://shields.io)
-![Loader](https://shields.io)
+Лёгкий FPS HUD и умный оптимизатор производительности для Fabric (Minecraft 1.21.11).
 
-Мощный оптимизатор производительности и кастомизируемый HUD-индикатор для Minecraft Java Edition на версии 1.21.11 (Fabric). Разработан специально для оптимизации игры на мобильных устройствах через PojavLauncher.
+## Сборка
 
----
+Требуется JDK 21.
 
-## ✨ Планируемые фичи
+```bash
+git clone https://github.com/midpoint/midpoint-mod.git
+cd midpoint-mod
+./gradlew build
+```
 
-### 1. 📊 FPS Indicator (Индикатор производительности)
-* Включение и выключение оверлея.
-* Текущий и средний FPS, время кадра (Frame Time).
-* Потребление оперативной памяти и нагрузка на CPU.
-* Полная кастомизация: позиция на экране, масштаб, цвет текста, тени, фон и прозрачность.
+Готовый `.jar` появится в `build/libs/midpoint-1.0.0.jar`.
 
-### 2. 🧠 Smart Optimizer (Умная оптимизация)
-* Автоматическое снижение нагрузки при падении FPS.
-* Оптимизация рендеринга сущностей, чанков и частиц.
-* Кэширование тяжелых вычислений.
-* Снижение нагрузки на сборщик мусора (Garbage Collection).
+## Тестовый запуск в среде разработки
 
-### 3. 📉 Low End Mode (Режим для слабых устройств)
-* Включение режима экстремальной производительности в один клик.
-* Максимальное отключение тяжелых визуальных эффектов (облака, погода, прозрачность) без потери читаемости игры.
+```bash
+./gradlew runClient
+```
 
----
+## Конфиг
 
-## 📲 Как установить на телефон (PojavLauncher)
+После первого запуска создаётся файл `config/midpoint.json` со всеми настройками HUD и оптимизатора.
 
-1. Перейдите во вкладку **Actions** вверху этого репозитория.
-2. Выберите самую верхнюю сборку (когда настроим автоматическую сборку).
-3. Прокрутите страницу вниз, найдите раздел **Artifacts** и скачайте архив `mod-jar`.
-4. Распакуйте архив и перенесите файл `.jar` в папку модов вашего лаунчера:
-   `/sdcard/Android/data/net.kdt.pojavlaunch/files/.minecraft/mods/`
-   
+## Структура проекта
+
+```
+src/main/java/net/midpoint/
+├── MidpointMod.java                 # точка входа (ModInitializer)
+├── config/
+│   └── MidpointConfig.java          # JSON конфиг
+├── hud/
+│   └── MidpointFpsHud.java          # HUD: FPS / frame time / RAM
+└── mixin/
+    └── MidpointOptimizerMixin.java  # умный оптимизатор + low-end режим
+
+src/main/resources/
+├── fabric.mod.json
+└── midpoint.mixins.json
+```
+
+## Примечание по версиям зависимостей
+
+Версии `yarn_mappings`, `loader_version` и `fabric_version` в `gradle.properties`
+нужно свериться с актуальными билдами под 1.21.11 на https://fabricmc.net/develop
+перед первой сборкой — Fabric регулярно выпускает новые билды маппингов и API
+даже для уже вышедших версий игры.

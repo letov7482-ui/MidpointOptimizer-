@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "midpoint",
+  "version": "1.0.0",
+  "name": "Midpoint",
+  "description": "Лёгкий FPS HUD и умный оптимизатор производительности для Fabric.",
+  "authors": [
+    "midpoint"
+  ],
+  "contact": {
+    "homepage": "https://github.com/midpoint/midpoint-mod"
+  },
+  "license": "MIT",
+  "icon": "assets/midpoint/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "net.midpoint.MidpointMod"
+    ]
+  },
+  "mixins": [
+    "midpoint.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
