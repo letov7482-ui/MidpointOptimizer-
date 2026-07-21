@@ -1,4 +1,4 @@
-# 🚀 MidpointOptimizer (Minecraft 1.21.11)
+# 🚀 MidpointOptimizer (Minecraft 1.21.x)
 
 [![Build Mod](https://github.com)](https://github.com)
 ![Minecraft Version](https://shields.io)
