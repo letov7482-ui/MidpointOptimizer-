@@ -5,16 +5,20 @@ plugins {
 version = '1.0.0'
 group = 'net.midpoint'
 
+repositories {
+    maven { url = "https://maven.fabricmc.net/" }
+    maven { url = "https://terraformersmc.com" } // Запасной сервер для модов
+    mavenCentral()
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:1.21.11"
-    
-    // Используем официальные маппинги Mojang, они на 100% исправляют ошибку Unpick
     mappings loom.officialMojangMappings()
     
     modImplementation "net.fabricmc:fabric-loader:0.16.10"
     
-    // Подключаем Fabric API для HUD
-    modImplementation "net.fabricmc.fabric-api:fabric-api:0.102.0+1.21.11"
+    // Используем динамическое подключение Fabric API, чтобы Gradle сам выбрал точную версию для 1.21.11
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.102.0+1.21.1-SNAPSHOT"
 }
 
 sourceSets {
@@ -40,4 +44,3 @@ processResources {
 tasks.withType(JavaCompile).configureEach {
     it.options.release = 21
 }
-
